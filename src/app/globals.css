@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: 245 247 250;
+  --bg-subtle: 237 240 244;
+  --bg-card: 255 255 255;
+  --border: 226 230 236;
+  --fg: 14 18 26;
+  --fg-muted: 71 84 103;
+  --fg-subtle: 130 144 162;
+  --accent-green: 16 185 129;
+  --accent-orange: 244 132 35;
+  --accent-blue: 56 122 246;
+  --accent-red: 235 70 70;
+  --accent-yellow: 234 179 8;
+  --accent-purple: 138 92 246;
+}
+
+.dark {
+  --bg: 9 11 16;
+  --bg-subtle: 15 18 26;
+  --bg-card: 19 23 32;
+  --border: 32 38 52;
+  --fg: 232 236 244;
+  --fg-muted: 163 173 189;
+  --fg-subtle: 113 124 142;
+  --accent-green: 34 211 153;
+  --accent-orange: 255 149 56;
+  --accent-blue: 90 145 255;
+  --accent-red: 255 95 95;
+  --accent-yellow: 250 200 50;
+  --accent-purple: 159 122 255;
+}
+
+html, body {
+  background: rgb(var(--bg));
+  color: rgb(var(--fg));
+  font-feature-settings: "ss01", "cv11";
+}
+
+* {
+  border-color: rgb(var(--border));
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--border));
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--fg-subtle));
+}
+
+input, select, textarea {
+  background: transparent;
+}
+
+/* Recharts overrides */
+.recharts-cartesian-grid-vertical line,
+.recharts-cartesian-grid-horizontal line {
+  stroke: rgb(var(--border));
+}
+.recharts-text {
+  fill: rgb(var(--fg-muted));
+}
+.recharts-tooltip-wrapper {
+  outline: none;
+}
+
+/* Forms */
+.input-base {
+  @apply w-full rounded-lg border border-border bg-bg-subtle px-3 py-2 text-sm text-fg placeholder:text-fg-subtle focus:border-accent-blue focus:outline-none focus:ring-2 focus:ring-accent-blue/20 transition;
+}
+.label-base {
+  @apply text-xs font-medium uppercase tracking-wide text-fg-muted;
+}
