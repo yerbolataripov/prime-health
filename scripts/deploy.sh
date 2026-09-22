@@ -11,5 +11,6 @@ git init -q -b gh-pages
 git add -A
 git -c user.name="deploy" -c user.email="deploy@local" commit -q -m "deploy $(date '+%Y-%m-%d %H:%M')"
 git push -f "$(cd .. && git remote get-url origin)" gh-pages:gh-pages
-cd .. && rm -rf out/.git
-echo "Опубликовано: https://$(cd .. 2>/dev/null; git remote get-url origin | sed -E 's#.*github.com[:/]([^/]+)/([^/.]+)(\.git)?#\1.github.io/\2#')/"
+cd ..
+rm -rf out/.git
+echo "Опубликовано: https://$(git remote get-url origin | sed -E 's#.*github.com[:/]([^/]+)/([^/.]+)(\.git)?#\1.github.io/\2#')/"
