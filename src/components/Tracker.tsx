@@ -111,7 +111,7 @@ export function MonthTracker({ entries, profile, month }: { entries: DailyEntry[
                       const s = c[k.key];
                       const Icon = CHECK_ICON[k.key];
                       if (s === "na") return null;
-                      return <Icon key={k.key} aria-label={k.label} className={cn("h-3 w-3", s === "ok" ? "text-accent-green" : s === "miss" ? "text-accent-red/60" : "text-fg-subtle/40")} strokeWidth={2.2} />;
+                      return <Icon key={k.key} aria-label={k.label} className={cn("h-3.5 w-3.5", s === "ok" ? "text-accent-green" : s === "miss" ? "text-accent-red" : "text-fg-muted")} strokeWidth={2.4} />;
                     })}
                   </div>
                 </div>
@@ -126,7 +126,8 @@ export function MonthTracker({ entries, profile, month }: { entries: DailyEntry[
           return <span key={k.key} className="inline-flex items-center gap-1"><Icon className="h-3 w-3" /> {k.label.toLowerCase()}</span>;
         })}
         <span className="inline-flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-accent-green" /> выполнено</span>
-        <span className="inline-flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-accent-red/60" /> нет</span>
+        <span className="inline-flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-accent-red" /> нет</span>
+        <span className="inline-flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-fg-muted" /> не заполнено</span>
       </div>
     </div>
   );
