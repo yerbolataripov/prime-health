@@ -69,7 +69,7 @@ function draw(canvas: HTMLCanvasElement, d: ShareData) {
   ctx.fillText(`${Math.round(d.progressPct)}% пути`, bx, by + 70);
 
   // строки
-  let y = 780;
+  let y = 740;
   for (const row of d.rows) {
     ctx.fillStyle = "#1f2532";
     ctx.fillRect(80, y - 58, W - 160, 1);
@@ -86,10 +86,10 @@ function draw(canvas: HTMLCanvasElement, d: ShareData) {
 
   ctx.fillStyle = "#ff9538";
   ctx.font = font(38, 700);
-  ctx.fillText(d.level, 80, H - 150);
+  ctx.fillText(d.level, 80, H - 120);
   ctx.fillStyle = "#5b6577";
   ctx.font = font(28, 500);
-  ctx.fillText(d.footer ?? "Точка Б · план, дневник, результат", 80, H - 80);
+  ctx.fillText(d.footer ?? "Точка Б · план, дневник, результат", 80, H - 60);
 }
 
 function roundRect(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number) {
