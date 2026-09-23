@@ -6,6 +6,7 @@ import { Field, Input, Textarea } from "@/components/ui/Input";
 import { PageHeader, Section } from "@/components/ui/PageHeader";
 import { ChartCard, ChartTooltipContent } from "@/components/ChartContainer";
 import { MonthTracker } from "@/components/Tracker";
+import { ShareCardButton } from "@/components/ShareCard";
 import { useApp } from "@/lib/store";
 import {
   addMonths,
@@ -71,6 +72,25 @@ export default function ProgressPage() {
   const started = profile.started;
 
   const [m, setM] = useState<Measurement>({ date: today });
+  const thisWeek = weeks[weeks.length - 1];
+  const lostAvg = round(profile.startWeightKg - avg7, 1);
+  const shareData = {
+    brand: "ТОЧКА Б",
+    title: `Неделя ${thisWeek?.index ?? 1} · ${fmtDate(today)}`,
+    subtitle: `Точка А ${profile.startWeightKg} кг → точка Б ${profile.goalWeightKg} кг`,
+    big: `${lostAvg > 0 ? "−" : lostAvg < 0 ? "+" : ""}${fmtNum(Math.abs(lostAvg), 1)} кг`,
+    bigLabel: `сброшено · сейчас ${fmtNum(avg7, 1)} кг`,
+    rows: [
+      { label: "Шаги в день", value: thisWeek?.stepsAvg != null ? fmtNum(thisWeek.stepsAvg) : "—" },
+      { label: "Калории в день", value: thisWeek?.kcalAvg != null ? fmtNum(thisWeek.kcalAvg) : "—" },
+      { label: "Белок в день", value: thisWeek?.proteinAvg != null ? `${fmtNum(thisWeek.proteinAvg)} г` : "—" },
+      { label: "Тренировок за неделю", value: `${thisWeek?.trainings ?? 0}` },
+      { label: "Дней записано", value: `${stats.daysTracked}` },
+    ],
+    level: `${Math.round(pct)}% пути · ещё ${fmtNum(Math.max(0, round(avg7 - profile.goalWeightKg, 1)), 1)} кг`,
+    progressPct: pct,
+    footer: `${profile.name} · путь от ${profile.startWeightKg} до ${profile.goalWeightKg} кг`,
+  };
   const last = measurements[0];
   const first = measurements[measurements.length - 1];
 
@@ -93,6 +113,7 @@ export default function ProgressPage() {
 
   return (
     <div>
+      <div className="flex justify-end -mb-3">{started && <ShareCardButton data={shareData} fileName={`tochka-b-${today}.png`} />}</div>
       <PageHeader title="Прогресс" description={started ? `Путь ${profile.startWeightKg} → ${profile.goalWeightKg} кг. Считаем по среднему за 7 дней, а не по одному взвешиванию.` : `Цель ${profile.goalWeightKg} кг. Отсчёт начнётся, когда нажмёшь «Начать отсчёт» на главной.`} />
 
       {started && <div className="grid md:grid-cols-3 gap-3 mb-5">
