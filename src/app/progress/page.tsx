@@ -293,9 +293,11 @@ export default function ProgressPage() {
           <Card className="lg:col-span-2">
             <CardBody className="space-y-3">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5">
-                <Field label="Дата">
-                  <Input type="date" max={today} value={m.date} onChange={(e) => setM((x) => ({ ...x, date: e.target.value }))} />
-                </Field>
+                <div className="col-span-2 md:col-span-1">
+                  <Field label="Дата">
+                    <Input type="date" max={today} value={m.date} onChange={(e) => setM((x) => ({ ...x, date: e.target.value }))} className="min-w-0" />
+                  </Field>
+                </div>
                 {M_FIELDS.map((f) => (
                   <Field key={f.key} label={f.label} hint={f.key === "weightKg" ? undefined : "см"}>
                     <Input
