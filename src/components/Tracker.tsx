@@ -3,7 +3,9 @@
 import { CHECK_KEYS, WEEKDAYS_SHORT, dayChecks, monthGrid, programStart, weekDates, type CheckStatus } from "@/lib/stats";
 import type { DailyEntry, Profile } from "@/lib/types";
 import { cn, todayISO } from "@/lib/utils";
-import { Check, Minus, X } from "lucide-react";
+import { Beef, Check, Dumbbell, Flame, Footprints, Minus, Scale, X } from "lucide-react";
+
+const CHECK_ICON: Record<string, typeof Scale> = { weight: Scale, steps: Footprints, kcal: Flame, protein: Beef, training: Dumbbell };
 
 function Cell({ s, small }: { s: CheckStatus; small?: boolean }) {
   const size = small ? "h-4 w-4" : "h-6 w-6";
@@ -104,11 +106,12 @@ export function MonthTracker({ entries, profile, month }: { entries: DailyEntry[
                     <span className={cn("text-[11px] font-medium", d === today ? "text-accent-orange" : "text-fg-muted")}>{parseInt(d.slice(8), 10)}</span>
                     {c.max > 0 && <span className={cn("text-[10px] font-semibold", ratio === 1 ? "text-accent-green" : "text-fg-muted")}>{c.score}/{c.max}</span>}
                   </div>
-                  <div className="flex gap-0.5 justify-center">
-                    {CHECK_KEYS.map((k) => {
+                  <div className="flex gap-1 justify-center">
+                    {c.max > 0 && !future && CHECK_KEYS.map((k) => {
                       const s = c[k.key];
-                      if (s === "na" || future) return <span key={k.key} className="h-1.5 w-1.5 rounded-full bg-transparent" />;
-                      return <span key={k.key} title={k.label} className={cn("h-1.5 w-1.5 rounded-full", s === "ok" ? "bg-accent-green" : s === "miss" ? "bg-accent-red/70" : "bg-fg-subtle/40")} />;
+                      const Icon = CHECK_ICON[k.key];
+                      if (s === "na") return null;
+                      return <Icon key={k.key} aria-label={k.label} className={cn("h-3 w-3", s === "ok" ? "text-accent-green" : s === "miss" ? "text-accent-red/60" : "text-fg-subtle/40")} strokeWidth={2.2} />;
                     })}
                   </div>
                 </div>
@@ -118,7 +121,12 @@ export function MonthTracker({ entries, profile, month }: { entries: DailyEntry[
         ))}
       </div>
       <div className="flex flex-wrap gap-x-3 gap-y-1 text-[10px] text-fg-subtle mt-2">
-        {CHECK_KEYS.map((k, i) => <span key={k.key}>{i + 1}-я точка — {k.label.toLowerCase()}</span>)}
+        {CHECK_KEYS.map((k) => {
+          const Icon = CHECK_ICON[k.key];
+          return <span key={k.key} className="inline-flex items-center gap-1"><Icon className="h-3 w-3" /> {k.label.toLowerCase()}</span>;
+        })}
+        <span className="inline-flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-accent-green" /> выполнено</span>
+        <span className="inline-flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-accent-red/60" /> нет</span>
       </div>
     </div>
   );
