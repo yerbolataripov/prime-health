@@ -177,11 +177,11 @@ export default function MealPrepPage() {
                       {Object.entries(GOAL_LABEL).map(([k, v]) => <option key={k} value={k}>{v}</option>)}
                     </Select>
                   </Field>
-                  <Field label="Исключить продукты" hint="через запятую">
-                    <Input value={excluded} onChange={(e) => setExcluded(e.target.value)} placeholder="рыба, лаваш" />
+                  <Field label="Исключить продукты">
+                    <Input value={excluded} onChange={(e) => setExcluded(e.target.value)} placeholder="через запятую: рыба, лаваш" />
                   </Field>
                   <Field label="Любимые продукты">
-                    <Input value={favoriteIngs} onChange={(e) => setFavoriteIngs(e.target.value)} placeholder="курица, творог" />
+                    <Input value={favoriteIngs} onChange={(e) => setFavoriteIngs(e.target.value)} placeholder="через запятую: курица, творог" />
                   </Field>
                   <div className="text-xs text-fg-muted self-end pb-2">
                     Тренировочные дни берутся из раздела «Тренировки»: {profile.trainingDays.map((d) => WEEKDAYS_SHORT[d]).join(", ") || "—"}. Избранные блюда ({favorites.length}) попадают чаще.
@@ -332,7 +332,7 @@ export default function MealPrepPage() {
           <div className="flex flex-col sm:flex-row gap-2">
             <div className="relative flex-1">
               <Search className="h-4 w-4 absolute left-3 top-1/2 -translate-y-1/2 text-fg-subtle" />
-              <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Поиск блюда или продукта…" className="input-base pl-9" />
+              <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Поиск блюда или продукта…" className="input-base !pl-10" />
             </div>
             <div className="flex gap-1.5 flex-wrap">
               {(["all", "breakfast", "lunch", "dinner", "snack"] as const).map((c) => (

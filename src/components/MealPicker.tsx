@@ -63,7 +63,7 @@ export function MealPicker({
             value={q}
             onChange={(e) => setQ(e.target.value)}
             placeholder="Поиск по названию или продукту…"
-            className="input-base pl-9"
+            className="input-base !pl-10"
           />
         </div>
         <div className="flex flex-wrap gap-1.5">
