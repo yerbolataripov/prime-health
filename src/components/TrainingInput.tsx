@@ -30,7 +30,7 @@ export function TrainingInput({
   return (
     <div>
       <div className="flex items-center justify-between mb-1.5">
-        <span className="text-[11px] uppercase tracking-wide text-fg-muted">Тренировки</span>
+        <span className="text-[12px] text-fg-muted">Тренировки</span>
         {planned && sessions.length === 0 && <span className="text-[11px] text-accent-blue">сегодня по плану</span>}
         {sessions.length > 0 && <span className="text-[11px] text-accent-green">{sessions.length} за день</span>}
       </div>
@@ -45,7 +45,7 @@ export function TrainingInput({
               onClick={() => toggle(k)}
               className={cn(
                 "px-2.5 py-1.5 rounded-lg border text-xs transition",
-                on ? "bg-accent-orange/15 border-accent-orange text-accent-orange font-medium" : "bg-bg-subtle border-border text-fg-muted hover:text-fg"
+                on ? "bg-accent/15 border-accent text-accent font-medium" : "bg-bg-subtle border-border text-fg-muted hover:text-fg"
               )}
             >
               {m.emoji} {m.label}

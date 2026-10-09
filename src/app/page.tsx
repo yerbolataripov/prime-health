@@ -74,7 +74,7 @@ export default function TodayPage() {
     <div className="space-y-5">
       <div className="flex items-end justify-between gap-3">
         <div>
-          <div className="text-xs uppercase tracking-widest text-fg-subtle">{localTodayLabel()}</div>
+          <div className="text-[12px] text-fg-muted">{localTodayLabel()}</div>
           <h1 className="text-2xl md:text-3xl font-semibold tracking-tight mt-0.5">Привет, {profile.name}</h1>
         </div>
         {started && (
@@ -87,9 +87,9 @@ export default function TodayPage() {
 
       {/* Старт отсчёта или прогресс к цели */}
       {!started ? (
-        <Card className="border-accent-orange/40">
+        <Card className="border-accent/40">
           <CardBody className="flex flex-col sm:flex-row sm:items-center gap-3">
-            <span className="h-10 w-10 rounded-xl bg-accent-orange/10 text-accent-orange flex items-center justify-center shrink-0"><Flag className="h-5 w-5" /></span>
+            <span className="h-10 w-10 rounded-xl bg-accent/10 text-accent flex items-center justify-center shrink-0"><Flag className="h-5 w-5" /></span>
             <div className="flex-1">
               <div className="text-sm font-semibold">Отсчёт ещё не начат</div>
               <div className="text-xs text-fg-muted mt-0.5">
@@ -112,21 +112,21 @@ export default function TodayPage() {
           <CardBody className="space-y-3">
             <div className="grid grid-cols-3 gap-3">
               <div>
-                <div className="text-[11px] uppercase tracking-wide text-fg-muted">Сейчас</div>
+                <div className="text-[12px] text-fg-muted">Сейчас</div>
                 <div className="text-3xl font-semibold tracking-tight">
                   {fmtNum(current, 1)}<span className="text-sm text-fg-muted ml-1">кг</span>
                 </div>
                 <div className="text-[11px] text-fg-subtle">среднее за 7 дней</div>
               </div>
               <div>
-                <div className="text-[11px] uppercase tracking-wide text-fg-muted">Сброшено</div>
+                <div className="text-[12px] text-fg-muted">Сброшено</div>
                 <div className={cn("text-3xl font-semibold tracking-tight", lost > 0 ? "text-accent-green" : "")}>
                   {lost > 0 ? "−" : ""}{fmtNum(Math.abs(lost), 1)}<span className="text-sm text-fg-muted ml-1">кг</span>
                 </div>
                 <div className="text-[11px] text-fg-subtle">старт {profile.startWeightKg} кг</div>
               </div>
               <div>
-                <div className="text-[11px] uppercase tracking-wide text-fg-muted">До цели</div>
+                <div className="text-[12px] text-fg-muted">До цели</div>
                 <div className="text-3xl font-semibold tracking-tight">
                   {fmtNum(Math.max(0, left), 1)}<span className="text-sm text-fg-muted ml-1">кг</span>
                 </div>
@@ -135,7 +135,7 @@ export default function TodayPage() {
             </div>
             <div>
               <div className="h-2.5 rounded-full bg-bg-subtle overflow-hidden">
-                <div className="h-full rounded-full bg-gradient-to-r from-accent-orange to-accent-green transition-all" style={{ width: `${pct}%` }} />
+                <div className="h-full rounded-full bg-gradient-to-r from-accent to-accent-green transition-all" style={{ width: `${pct}%` }} />
               </div>
               <div className="flex justify-between text-[11px] text-fg-muted mt-1.5">
                 <span>{Math.round(pct)}% пути</span>
@@ -185,11 +185,11 @@ export default function TodayPage() {
                   onClick={() => setDate(d)}
                   className={cn(
                     "rounded-xl border py-2 flex flex-col items-center gap-0.5 transition disabled:opacity-30",
-                    selected ? "border-accent-orange bg-accent-orange/10 text-accent-orange" : "border-border bg-bg-subtle/50 text-fg-muted hover:text-fg",
+                    selected ? "border-accent bg-accent/10 text-accent" : "border-border bg-bg-subtle/50 text-fg-muted hover:text-fg",
                     d === today && !selected && "border-fg-subtle/50"
                   )}
                 >
-                  <span className="text-[10px] uppercase tracking-wide">{WEEKDAYS_SHORT[i]}</span>
+                  <span className="text-[10px]">{WEEKDAYS_SHORT[i]}</span>
                   <span className="text-sm font-semibold">{parseInt(d.slice(8), 10)}</span>
                   <span className="flex items-center gap-0.5 h-2">
                     {filled && <span className="h-1.5 w-1.5 rounded-full bg-accent-green" />}
@@ -255,7 +255,7 @@ export default function TodayPage() {
               <div className="text-base font-semibold">Трекер целей</div>
               <div className="text-xs text-fg-muted">Зелёная галочка — цель дня выполнена</div>
             </div>
-            <Link href="/progress#tracker" className="text-xs text-accent-orange hover:underline">Месяц →</Link>
+            <Link href="/progress#tracker" className="text-xs text-accent hover:underline">Месяц →</Link>
           </div>
           <WeekTracker entries={entries} profile={profile} monday={weekMonday} selected={date} onSelect={setDate} />
         </CardBody>
@@ -264,7 +264,7 @@ export default function TodayPage() {
       {thisWeek && (
         <div>
           <div className="flex items-end justify-between mb-2">
-            <h2 className="text-sm font-semibold uppercase tracking-wider text-fg-muted">Эта неделя</h2>
+            <h2 className="text-[15px] font-semibold text-fg">Эта неделя</h2>
             <span className="text-xs text-fg-subtle">{thisWeek.daysFilled} из 7 дней заполнено</span>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-2.5">
@@ -285,7 +285,7 @@ export default function TodayPage() {
               <XAxis dataKey="label" fontSize={11} minTickGap={24} />
               <YAxis fontSize={11} domain={["dataMin - 0.5", "dataMax + 0.5"]} width={40} />
               <Tooltip content={<ChartTooltipContent unit="кг" />} />
-              {hasWeights && <Line dataKey="w" name="Вес" stroke="rgb(var(--accent-orange))" strokeWidth={0} dot={{ r: 3, fill: "rgb(var(--accent-orange))", strokeWidth: 0 }} connectNulls={false} isAnimationActive={false} />}
+              {hasWeights && <Line dataKey="w" name="Вес" stroke="rgb(var(--accent))" strokeWidth={0} dot={{ r: 3, fill: "rgb(var(--accent))", strokeWidth: 0 }} connectNulls={false} isAnimationActive={false} />}
               <Line dataKey="avg7" name="Среднее 7 дн." stroke="rgb(var(--accent-green))" strokeWidth={2.5} dot={false} connectNulls isAnimationActive={false} />
             </ComposedChart>
           </ChartCard>
@@ -302,7 +302,7 @@ export default function TodayPage() {
                 <div className="text-xs text-fg-muted mt-0.5">
                   {sinceMeasure == null ? "Ещё ни одного замера." : sinceMeasure === 0 ? "Сегодня." : `${sinceMeasure} дн. назад.`} Раз в неделю, утром натощак.
                 </div>
-                <Link href="/progress#measure" className="inline-block mt-2 text-xs text-accent-orange hover:underline">Внести замеры →</Link>
+                <Link href="/progress#measure" className="inline-block mt-2 text-xs text-accent hover:underline">Внести замеры →</Link>
               </div>
             </CardBody>
           </Card>
@@ -310,10 +310,10 @@ export default function TodayPage() {
           {started && (
             <Card>
               <CardBody>
-                <div className="text-[11px] uppercase tracking-wide text-fg-muted mb-2">Рубежи</div>
+                <div className="text-[12px] text-fg-muted mb-2">Рубежи</div>
                 <div className="flex flex-wrap gap-1.5">
                   {ms.map((m) => (
-                    <span key={m.kg} className={cn("px-2 py-1 rounded-md text-[11px] border", m.reached ? "bg-accent-green/10 border-accent-green/30 text-accent-green" : m.kg === nextMs?.kg ? "border-accent-orange/40 text-accent-orange" : "border-border text-fg-subtle")}>
+                    <span key={m.kg} className={cn("px-2 py-1 rounded-md text-[11px] border", m.reached ? "bg-accent-green/10 border-accent-green/30 text-accent-green" : m.kg === nextMs?.kg ? "border-accent/40 text-accent" : "border-border text-fg-subtle")}>
                       {m.reached ? "✓ " : ""}{m.kg}
                     </span>
                   ))}
@@ -330,7 +330,7 @@ export default function TodayPage() {
 function WeekStat({ label, value, unit, hint, tone }: { label: string; value: string; unit?: string; hint: string; tone: "good" | "bad" | "neutral" }) {
   return (
     <div className={cn("rounded-2xl border bg-bg-card p-3.5", tone === "good" ? "border-accent-green/30" : tone === "bad" ? "border-accent-red/30" : "border-border")}>
-      <div className="text-[11px] uppercase tracking-wide text-fg-muted">{label}</div>
+      <div className="text-[12px] text-fg-muted">{label}</div>
       <div className="text-xl font-semibold tracking-tight mt-1">
         {value}{unit && <span className="text-xs text-fg-muted ml-1">{unit}</span>}
       </div>

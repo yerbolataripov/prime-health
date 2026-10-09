@@ -73,7 +73,7 @@ export function RecipeModal({
         </div>
 
         <div>
-          <div className="text-xs uppercase tracking-wider text-fg-muted mb-2">Ингредиенты</div>
+          <div className="text-[12px] text-fg-muted mb-2">Ингредиенты</div>
           <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-1.5 text-sm">
             {template.ingredients.map((i, idx) => (
               <li key={idx} className="flex justify-between border-b border-border py-1">
@@ -86,8 +86,8 @@ export function RecipeModal({
 
         {template.steps && template.steps.length > 0 && (
           <div>
-            <div className="text-xs uppercase tracking-wider text-fg-muted mb-2">Рецепт</div>
-            <ol className="space-y-1.5 text-sm list-decimal list-inside marker:text-accent-orange">
+            <div className="text-[12px] text-fg-muted mb-2">Рецепт</div>
+            <ol className="space-y-1.5 text-sm list-decimal list-inside marker:text-accent">
               {template.steps.map((s, idx) => <li key={idx} className="leading-relaxed">{s}</li>)}
             </ol>
           </div>

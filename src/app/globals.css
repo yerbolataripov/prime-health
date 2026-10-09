@@ -2,80 +2,76 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Светлая тема — основная */
 :root {
-  --bg: 245 247 250;
-  --bg-subtle: 237 240 244;
+  --bg: 244 245 247;
+  --bg-subtle: 236 238 241;
   --bg-card: 255 255 255;
-  --border: 226 230 236;
-  --fg: 14 18 26;
-  --fg-muted: 71 84 103;
-  --fg-subtle: 130 144 162;
-  --accent-green: 16 185 129;
-  --accent-orange: 244 132 35;
-  --accent-blue: 56 122 246;
-  --accent-red: 235 70 70;
-  --accent-yellow: 234 179 8;
-  --accent-purple: 138 92 246;
+  --border: 229 231 235;
+  --fg: 17 19 24;
+  --fg-muted: 107 114 128;
+  --fg-subtle: 156 163 175;
+  --accent: 14 124 102;
+  --accent-green: 22 163 74;
+  --accent-orange: 234 125 8;
+  --accent-blue: 37 99 235;
+  --accent-red: 220 38 38;
+  --accent-yellow: 217 119 6;
+  --accent-purple: 124 58 237;
+  --shadow: 0 1px 2px rgb(16 24 40 / 0.04), 0 8px 24px -12px rgb(16 24 40 / 0.10);
 }
 
 .dark {
-  --bg: 9 11 16;
-  --bg-subtle: 15 18 26;
-  --bg-card: 19 23 32;
-  --border: 32 38 52;
-  --fg: 232 236 244;
-  --fg-muted: 163 173 189;
-  --fg-subtle: 113 124 142;
-  --accent-green: 34 211 153;
-  --accent-orange: 255 149 56;
-  --accent-blue: 90 145 255;
-  --accent-red: 255 95 95;
-  --accent-yellow: 250 200 50;
-  --accent-purple: 159 122 255;
+  --bg: 14 15 19;
+  --bg-subtle: 22 24 30;
+  --bg-card: 26 28 35;
+  --border: 40 43 52;
+  --fg: 236 238 243;
+  --fg-muted: 160 168 182;
+  --fg-subtle: 110 118 134;
+  --accent: 45 192 160;
+  --accent-green: 52 211 153;
+  --accent-orange: 251 146 60;
+  --accent-blue: 96 165 250;
+  --accent-red: 248 113 113;
+  --accent-yellow: 251 191 36;
+  --accent-purple: 167 139 250;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.4);
 }
 
 html, body {
   background: rgb(var(--bg));
   color: rgb(var(--fg));
-  font-feature-settings: "ss01", "cv11";
+  font-feature-settings: "ss01", "cv11", "tnum";
+  -webkit-tap-highlight-color: transparent;
 }
 
-* {
-  border-color: rgb(var(--border));
-}
+* { border-color: rgb(var(--border)); }
 
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-::-webkit-scrollbar-thumb {
-  background: rgb(var(--border));
-  border-radius: 8px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: rgb(var(--fg-subtle));
-}
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background: rgb(var(--border)); border-radius: 8px; }
 
-input, select, textarea {
-  background: transparent;
-}
+input, select, textarea { background: transparent; }
+input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+input[type="number"] { -moz-appearance: textfield; }
 
-/* Recharts overrides */
-.recharts-cartesian-grid-vertical line,
-.recharts-cartesian-grid-horizontal line {
-  stroke: rgb(var(--border));
-}
-.recharts-text {
-  fill: rgb(var(--fg-muted));
-}
-.recharts-tooltip-wrapper {
-  outline: none;
-}
+.recharts-cartesian-grid-vertical line, .recharts-cartesian-grid-horizontal line { stroke: rgb(var(--border)); }
+.recharts-text { fill: rgb(var(--fg-muted)); }
+.recharts-tooltip-wrapper { outline: none; }
 
-/* Forms */
 .input-base {
-  @apply w-full rounded-lg border border-border bg-bg-subtle px-3 py-2 text-sm text-fg placeholder:text-fg-subtle focus:border-accent-blue focus:outline-none focus:ring-2 focus:ring-accent-blue/20 transition;
+  @apply w-full rounded-xl border border-border bg-bg-card px-3.5 py-2.5 text-[15px] text-fg placeholder:text-fg-subtle focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/15 transition;
 }
 .label-base {
-  @apply text-xs font-medium uppercase tracking-wide text-fg-muted;
+  @apply text-[12px] font-medium text-fg-muted;
 }
+.card {
+  @apply rounded-[20px] bg-bg-card;
+  box-shadow: var(--shadow);
+}
+
+@keyframes sheet-up { from { transform: translateY(32px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+.sheet-enter { animation: sheet-up .28s cubic-bezier(.2,.8,.2,1); }
+.fade-enter { animation: fade-in .2s ease; }
+.pill { @apply inline-flex items-center gap-1.5 rounded-full bg-bg-card px-3.5 py-1.5 text-[13px] font-medium shadow-card; }

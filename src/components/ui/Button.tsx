@@ -13,7 +13,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variants: Record<Variant, string> = {
   primary:
-    "bg-accent-orange text-white hover:bg-accent-orange/90 shadow-sm",
+    "bg-fg text-bg hover:opacity-90",
   secondary: "bg-bg-subtle text-fg hover:bg-border",
   ghost: "bg-transparent text-fg hover:bg-bg-subtle",
   outline: "border border-border bg-bg-card text-fg hover:bg-bg-subtle",
@@ -22,10 +22,10 @@ const variants: Record<Variant, string> = {
 };
 
 const sizes: Record<Size, string> = {
-  sm: "h-8 px-3 text-xs rounded-lg",
-  md: "h-10 px-4 text-sm rounded-xl",
-  lg: "h-11 px-5 text-sm rounded-xl",
-  icon: "h-9 w-9 rounded-lg flex items-center justify-center",
+  sm: "h-9 px-3.5 text-[13px] rounded-full",
+  md: "h-11 px-5 text-[15px] rounded-full",
+  lg: "h-12 px-6 text-[15px] rounded-full",
+  icon: "h-9 w-9 rounded-full flex items-center justify-center",
 };
 
 export const Button = forwardRef<HTMLButtonElement, Props>(function Button(

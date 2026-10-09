@@ -79,8 +79,8 @@ export function bmiLabel(b: number): { label: string; color: string } {
   if (b < 18.5) return { label: "Недостаточный", color: "text-accent-blue" };
   if (b < 25) return { label: "Норма", color: "text-accent-green" };
   if (b < 30) return { label: "Избыточный", color: "text-accent-yellow" };
-  if (b < 35) return { label: "Ожирение I", color: "text-accent-orange" };
-  if (b < 40) return { label: "Ожирение II", color: "text-accent-orange" };
+  if (b < 35) return { label: "Ожирение I", color: "text-accent" };
+  if (b < 40) return { label: "Ожирение II", color: "text-accent" };
   return { label: "Ожирение III", color: "text-accent-red" };
 }
 

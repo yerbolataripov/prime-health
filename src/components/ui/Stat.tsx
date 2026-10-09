@@ -41,7 +41,7 @@ export function Stat({ label, value, unit, hint, delta, status = "neutral", icon
       )}
     >
       <div className="flex items-center justify-between">
-        <span className="text-xs uppercase tracking-wide text-fg-muted">{label}</span>
+        <span className="text-xs text-fg-muted">{label}</span>
         {icon && (
           <span className={cn("h-7 w-7 rounded-lg flex items-center justify-center", statusBg[status])}>
             {icon}

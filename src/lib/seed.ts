@@ -25,5 +25,5 @@ export const SEED: AppData = {
   mealPlans: [],
   rations: [],
   favoriteMeals: [],
-  ui: { theme: "dark" },
+  ui: { theme: "light" },
 };

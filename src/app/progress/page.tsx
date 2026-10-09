@@ -121,24 +121,24 @@ export default function ProgressPage() {
           <CardBody>
             <div className="flex items-end justify-between gap-3">
               <div>
-                <div className="text-[11px] uppercase tracking-wide text-fg-muted">Старт</div>
+                <div className="text-[12px] text-fg-muted">Старт</div>
                 <div className="text-xl font-semibold">{profile.startWeightKg} кг</div>
                 <div className="text-[11px] text-fg-subtle">{fmtDate(profile.startDate)}</div>
               </div>
               <div className="text-center">
-                <div className="text-[11px] uppercase tracking-wide text-fg-muted">Сейчас</div>
+                <div className="text-[12px] text-fg-muted">Сейчас</div>
                 <div className="text-4xl font-semibold tracking-tight">{fmtNum(avg7, 1)} <span className="text-base text-fg-muted">кг</span></div>
                 <div className="text-[11px] text-accent-green">−{fmtNum(round(profile.startWeightKg - avg7, 1), 1)} кг · последнее {fmtNum(lastWeight, 1)}</div>
               </div>
               <div className="text-right">
-                <div className="text-[11px] uppercase tracking-wide text-fg-muted">Цель</div>
+                <div className="text-[12px] text-fg-muted">Цель</div>
                 <div className="text-xl font-semibold">{profile.goalWeightKg} кг</div>
                 <div className="text-[11px] text-fg-subtle">ещё {fmtNum(round(avg7 - profile.goalWeightKg, 1), 1)} кг</div>
               </div>
             </div>
             <div className="relative mt-4">
               <div className="h-2.5 rounded-full bg-bg-subtle overflow-hidden">
-                <div className="h-full bg-gradient-to-r from-accent-orange to-accent-green" style={{ width: `${pct}%` }} />
+                <div className="h-full bg-gradient-to-r from-accent to-accent-green" style={{ width: `${pct}%` }} />
               </div>
               <div className="flex justify-between text-[11px] text-fg-muted mt-1.5"><span>{Math.round(pct)}%</span><span>100%</span></div>
             </div>
@@ -146,7 +146,7 @@ export default function ProgressPage() {
               {ms.map((x) => {
                 const next = ms.find((y) => !y.reached)?.kg === x.kg;
                 return (
-                  <span key={x.kg} title={x.reachedAt ? fmtDateLong(x.reachedAt) : ""} className={cn("px-2 py-1 rounded-md text-[11px] border", x.reached ? "bg-accent-green/10 border-accent-green/30 text-accent-green" : next ? "border-accent-orange/40 text-accent-orange" : "border-border text-fg-subtle")}>
+                  <span key={x.kg} title={x.reachedAt ? fmtDateLong(x.reachedAt) : ""} className={cn("px-2 py-1 rounded-md text-[11px] border", x.reached ? "bg-accent-green/10 border-accent-green/30 text-accent-green" : next ? "border-accent/40 text-accent" : "border-border text-fg-subtle")}>
                     {x.reached ? "✓ " : ""}{x.kg}
                   </span>
                 );
@@ -157,7 +157,7 @@ export default function ProgressPage() {
 
         <Card>
           <CardBody className="space-y-2">
-            <div className="text-[11px] uppercase tracking-wide text-fg-muted">Темп за 4 недели</div>
+            <div className="text-[12px] text-fg-muted">Темп за 4 недели</div>
             {rate == null ? (
               <div className="text-sm text-fg-muted">Нужно минимум 4 взвешивания за последние 28 дней.</div>
             ) : (
@@ -190,7 +190,7 @@ export default function ProgressPage() {
             <XAxis dataKey="label" fontSize={11} minTickGap={28} />
             <YAxis fontSize={11} domain={["dataMin - 1", "dataMax + 1"]} width={40} />
             <Tooltip content={<ChartTooltipContent unit="кг" />} />
-            <Line dataKey="w" name="Вес" stroke="rgb(var(--accent-orange))" strokeWidth={0} dot={{ r: 2.5, fill: "rgb(var(--accent-orange))", strokeWidth: 0 }} isAnimationActive={false} />
+            <Line dataKey="w" name="Вес" stroke="rgb(var(--accent))" strokeWidth={0} dot={{ r: 2.5, fill: "rgb(var(--accent))", strokeWidth: 0 }} isAnimationActive={false} />
             <Line dataKey="avg7" name="Среднее 7 дн." stroke="rgb(var(--accent-green))" strokeWidth={2.5} dot={false} connectNulls isAnimationActive={false} />
           </ComposedChart>
         </ChartCard>
@@ -221,7 +221,7 @@ export default function ProgressPage() {
         <div className="grid md:grid-cols-2 gap-3">
           <Card>
             <CardBody>
-              <div className="text-[11px] uppercase tracking-wide text-fg-muted mb-2">Какие тренировки были</div>
+              <div className="text-[12px] text-fg-muted mb-2">Какие тренировки были</div>
               {stats.byKind.length === 0 ? (
                 <div className="text-sm text-fg-muted">Пока нет тренировок. Отмечай их на главной.</div>
               ) : (
@@ -244,12 +244,12 @@ export default function ProgressPage() {
           </Card>
           <Card>
             <CardBody>
-              <div className="text-[11px] uppercase tracking-wide text-fg-muted mb-2">Шаги по месяцам</div>
+              <div className="text-[12px] text-fg-muted mb-2">Шаги по месяцам</div>
               {months.length === 0 ? (
                 <div className="text-sm text-fg-muted">Пока нет записей шагов.</div>
               ) : (
                 <table className="w-full text-sm">
-                  <thead className="text-[11px] uppercase tracking-wider text-fg-muted"><tr><th className="text-left font-normal pb-1">Месяц</th><th className="text-right font-normal pb-1">Всего</th><th className="text-right font-normal pb-1">В день</th><th className="text-right font-normal pb-1">Дней</th></tr></thead>
+                  <thead className="text-[11px]r text-fg-muted"><tr><th className="text-left font-normal pb-1">Месяц</th><th className="text-right font-normal pb-1">Всего</th><th className="text-right font-normal pb-1">В день</th><th className="text-right font-normal pb-1">Дней</th></tr></thead>
                   <tbody>
                     {[...months].reverse().map((r) => (
                       <tr key={r.month} className="border-t border-border">
@@ -270,7 +270,7 @@ export default function ProgressPage() {
       <Section title="По неделям" description="Как в твоей таблице: средний вес, изменение, шаги, калории, тренировки">
         <div className="overflow-x-auto rounded-2xl border border-border bg-bg-card">
           <table className="w-full text-sm min-w-[720px]">
-            <thead className="text-[11px] uppercase tracking-wider text-fg-muted bg-bg-subtle">
+            <thead className="text-[11px]r text-fg-muted bg-bg-subtle">
               <tr>
                 <th className="px-3 py-2 text-left">Нед.</th>
                 <th className="px-3 py-2 text-left">Даты</th>
@@ -343,7 +343,7 @@ export default function ProgressPage() {
 
           <Card>
             <CardBody>
-              <div className="text-[11px] uppercase tracking-wide text-fg-muted mb-2">Изменения от первого замера</div>
+              <div className="text-[12px] text-fg-muted mb-2">Изменения от первого замера</div>
               {!first || !last || first.date === last.date ? (
                 <div className="text-sm text-fg-muted">Нужно минимум два замера.</div>
               ) : (
@@ -378,7 +378,7 @@ export default function ProgressPage() {
                 <YAxis fontSize={11} domain={["dataMin - 2", "dataMax + 2"]} width={40} />
                 <Tooltip content={<ChartTooltipContent unit="см" />} />
                 <Line dataKey="waist" name="Талия" stroke="rgb(var(--accent-blue))" dot strokeWidth={2} connectNulls isAnimationActive={false} />
-                <Line dataKey="belly" name="Живот" stroke="rgb(var(--accent-orange))" dot strokeWidth={2} connectNulls isAnimationActive={false} />
+                <Line dataKey="belly" name="Живот" stroke="rgb(var(--accent))" dot strokeWidth={2} connectNulls isAnimationActive={false} />
                 <Line dataKey="chest" name="Грудь" stroke="rgb(var(--accent-green))" dot strokeWidth={2} connectNulls isAnimationActive={false} />
                 <Line dataKey="hips" name="Таз" stroke="rgb(var(--accent-purple))" dot strokeWidth={2} connectNulls isAnimationActive={false} />
               </LineChart>
@@ -388,7 +388,7 @@ export default function ProgressPage() {
 
         <div className="overflow-x-auto rounded-2xl border border-border bg-bg-card mt-4">
           <table className="w-full text-sm min-w-[900px]">
-            <thead className="text-[11px] uppercase tracking-wider text-fg-muted bg-bg-subtle">
+            <thead className="text-[11px]r text-fg-muted bg-bg-subtle">
               <tr>
                 <th className="px-3 py-2 text-left">Дата</th>
                 {M_FIELDS.map((f) => <th key={f.key} className="px-3 py-2 text-right">{f.label.replace(", кг", "")}</th>)}
@@ -419,7 +419,7 @@ export default function ProgressPage() {
 function StatBox({ label, value, hint }: { label: string; value: string; hint: string }) {
   return (
     <div className="rounded-2xl border border-border bg-bg-card p-3.5">
-      <div className="text-[11px] uppercase tracking-wide text-fg-muted">{label}</div>
+      <div className="text-[12px] text-fg-muted">{label}</div>
       <div className="text-xl font-semibold tracking-tight mt-1">{value}</div>
       <div className="text-[11px] text-fg-subtle mt-0.5">{hint}</div>
     </div>

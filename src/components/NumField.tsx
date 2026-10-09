@@ -43,7 +43,7 @@ export function NumField({
   return (
     <label className={cn("block rounded-xl border border-border bg-bg-subtle/60 px-3 py-2.5 focus-within:border-accent-blue transition", className)}>
       <div className="flex items-center justify-between">
-        <span className="text-[11px] uppercase tracking-wide text-fg-muted">{label}</span>
+        <span className="text-[12px] text-fg-muted">{label}</span>
         {target != null && (
           <span className={cn("text-[11px]", hit === true ? "text-accent-green" : hit === false ? "text-fg-subtle" : "text-fg-subtle")}>
             цель {target.toLocaleString("ru-RU")}
@@ -72,7 +72,7 @@ export function NumField({
       {pct != null && (
         <div className="h-1 mt-2 rounded-full bg-border overflow-hidden">
           <div
-            className={cn("h-full rounded-full transition-all", hit ? "bg-accent-green" : lowerIsBetter && (value ?? 0) > (target ?? 0) ? "bg-accent-red" : "bg-accent-orange")}
+            className={cn("h-full rounded-full transition-all", hit ? "bg-accent-green" : lowerIsBetter && (value ?? 0) > (target ?? 0) ? "bg-accent-red" : "bg-accent")}
             style={{ width: `${pct}%` }}
           />
         </div>

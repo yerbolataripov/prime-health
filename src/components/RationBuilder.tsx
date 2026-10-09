@@ -109,7 +109,7 @@ export function RationBuilder({ initialDate }: { initialDate?: string }) {
                 return (
                   <div key={s.id} className={cn("rounded-xl border p-3 transition", t ? "border-border bg-bg-subtle/40" : "border-dashed border-border")}>
                     <div className="flex items-center justify-between gap-2">
-                      <span className="text-[10px] uppercase tracking-wider text-fg-subtle">{CATEGORY_LABEL[s.category]}</span>
+                      <span className="text-[11px] text-fg-subtle">{CATEGORY_LABEL[s.category]}</span>
                       <button onClick={() => removeSlot(s.id)} className="text-fg-subtle hover:text-accent-red p-0.5" aria-label="Убрать приём"><X className="h-3.5 w-3.5" /></button>
                     </div>
                     {t ? (
@@ -133,7 +133,7 @@ export function RationBuilder({ initialDate }: { initialDate?: string }) {
                         </div>
                       </div>
                     ) : (
-                      <button onClick={() => setPicker({ slotId: s.id, category: s.category })} className="mt-1 w-full rounded-lg py-2.5 text-sm text-accent-orange hover:bg-accent-orange/5 border border-transparent hover:border-accent-orange/30 transition">
+                      <button onClick={() => setPicker({ slotId: s.id, category: s.category })} className="mt-1 w-full rounded-lg py-2.5 text-sm text-accent hover:bg-accent/5 border border-transparent hover:border-accent/30 transition">
                         + Выбрать блюдо
                       </button>
                     )}
@@ -206,7 +206,7 @@ function Bar({ label, value, target, unit, lowerIsBetter }: { label: string; val
   const pct = target ? Math.min(100, (value / target) * 100) : 0;
   const over = value > target * 1.05;
   const under = value < target * 0.9;
-  const tone = lowerIsBetter ? (over ? "bg-accent-red" : under ? "bg-accent-orange" : "bg-accent-green") : value >= target * 0.95 ? "bg-accent-green" : "bg-accent-orange";
+  const tone = lowerIsBetter ? (over ? "bg-accent-red" : under ? "bg-accent" : "bg-accent-green") : value >= target * 0.95 ? "bg-accent-green" : "bg-accent";
   const left = target - value;
   return (
     <div>

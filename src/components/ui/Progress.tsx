@@ -17,7 +17,7 @@ export function Progress({
   const color = {
     blue: "bg-accent-blue",
     green: "bg-accent-green",
-    orange: "bg-accent-orange",
+    orange: "bg-accent",
     red: "bg-accent-red",
     purple: "bg-accent-purple",
   }[tone];

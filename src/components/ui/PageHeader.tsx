@@ -17,8 +17,8 @@ export function PageHeader({
   return (
     <div className={cn("flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-6", className)}>
       <div>
-        <h1 className="text-2xl md:text-3xl font-semibold tracking-tight text-fg">{title}</h1>
-        {description && <p className="text-sm text-fg-muted mt-1 max-w-2xl">{description}</p>}
+        <h1 className="text-[26px] font-semibold tracking-tight text-fg">{title}</h1>
+        {description && <p className="text-[13px] text-fg-muted mt-1 max-w-2xl">{description}</p>}
       </div>
       {actions && <div className="flex items-center gap-2 flex-wrap">{actions}</div>}
     </div>
@@ -43,7 +43,7 @@ export function Section({
       {(title || actions) && (
         <div className="flex items-end justify-between mb-3 gap-3">
           <div>
-            {title && <h2 className="text-sm font-semibold uppercase tracking-wider text-fg-muted">{title}</h2>}
+            {title && <h2 className="text-[15px] font-semibold text-fg">{title}</h2>}
             {description && <p className="text-xs text-fg-subtle mt-0.5">{description}</p>}
           </div>
           {actions}

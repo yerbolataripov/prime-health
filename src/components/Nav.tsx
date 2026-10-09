@@ -26,14 +26,14 @@ export function Sidebar() {
   const name = useApp((s) => s.profile.name);
 
   return (
-    <aside className="hidden lg:flex sticky top-0 h-screen w-[220px] shrink-0 flex-col border-r border-border bg-bg-card">
+    <aside className="hidden lg:flex sticky top-0 h-screen w-[220px] shrink-0 flex-col bg-bg">
       <div className="flex items-center gap-2.5 px-5 py-5 border-b border-border">
-        <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-accent-orange to-accent-red flex items-center justify-center shadow-lg shadow-accent-orange/20">
+        <div className="h-9 w-9 rounded-[10px] bg-accent flex items-center justify-center">
           <Activity className="h-4 w-4 text-white" strokeWidth={2.4} />
         </div>
         <div>
           <div className="text-sm font-semibold tracking-tight">Prime Health</div>
-          <div className="text-[10px] uppercase tracking-widest text-fg-subtle">{name}</div>
+          <div className="text-[10px]st text-fg-subtle">{name}</div>
         </div>
       </div>
       <nav className="flex-1 px-3 py-3 space-y-0.5">
@@ -45,8 +45,8 @@ export function Sidebar() {
               key={it.href}
               href={it.href}
               className={cn(
-                "flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors",
-                active ? "bg-accent-orange/10 text-accent-orange font-medium" : "text-fg-muted hover:bg-bg-subtle hover:text-fg"
+                "flex items-center gap-3 rounded-full px-3.5 py-2 text-[14px] transition-colors",
+                active ? "bg-bg-subtle text-fg font-medium" : "text-fg-muted hover:bg-bg-subtle hover:text-fg"
               )}
             >
               <Icon className="h-4 w-4" />
@@ -82,7 +82,7 @@ export function BottomNav() {
               href={it.href}
               className={cn(
                 "flex flex-col items-center gap-1 py-2 text-[10px]",
-                active ? "text-accent-orange" : "text-fg-muted"
+                active ? "text-fg" : "text-fg-subtle"
               )}
             >
               <Icon className="h-5 w-5" strokeWidth={active ? 2.4 : 2} />

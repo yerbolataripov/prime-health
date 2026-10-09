@@ -110,6 +110,6 @@ export function MealPicker({
 function chip(active: boolean) {
   return cn(
     "px-2.5 py-1 rounded-lg border text-xs transition",
-    active ? "bg-accent-orange/15 border-accent-orange text-accent-orange" : "bg-bg-subtle border-border text-fg-muted hover:text-fg"
+    active ? "bg-accent/15 border-accent text-accent" : "bg-bg-subtle border-border text-fg-muted hover:text-fg"
   );
 }

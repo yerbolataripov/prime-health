@@ -20,6 +20,7 @@ const config: Config = {
           subtle: "rgb(var(--fg-subtle) / <alpha-value>)",
         },
         accent: {
+          DEFAULT: "rgb(var(--accent) / <alpha-value>)",
           green: "rgb(var(--accent-green) / <alpha-value>)",
           orange: "rgb(var(--accent-orange) / <alpha-value>)",
           blue: "rgb(var(--accent-blue) / <alpha-value>)",
@@ -33,9 +34,10 @@ const config: Config = {
         mono: ["'JetBrains Mono'", "ui-monospace", "monospace"],
       },
       boxShadow: {
-        card: "0 1px 2px 0 rgb(0 0 0 / 0.04), 0 1px 3px 0 rgb(0 0 0 / 0.06)",
-        cardDark: "0 1px 2px 0 rgb(0 0 0 / 0.45)",
+        card: "var(--shadow)",
+        cardDark: "var(--shadow)",
       },
+      borderRadius: { "2xl": "20px", "3xl": "28px" },
     },
   },
   plugins: [],

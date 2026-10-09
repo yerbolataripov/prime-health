@@ -35,9 +35,9 @@ export function WeekTracker({ entries, profile, monday, selected, onSelect }: { 
                 <button
                   onClick={() => onSelect?.(d)}
                   disabled={d > today}
-                  className={cn("flex flex-col items-center mx-auto rounded-md px-1.5 py-0.5 disabled:opacity-30", d === selected ? "text-accent-orange" : d === today ? "text-fg" : "text-fg-muted")}
+                  className={cn("flex flex-col items-center mx-auto rounded-md px-1.5 py-0.5 disabled:opacity-30", d === selected ? "text-accent" : d === today ? "text-fg" : "text-fg-muted")}
                 >
-                  <span className="text-[10px] uppercase">{WEEKDAYS_SHORT[i]}</span>
+                  <span className="text-[10px]">{WEEKDAYS_SHORT[i]}</span>
                   <span className="font-semibold">{parseInt(d.slice(8), 10)}</span>
                 </button>
               </th>
@@ -82,7 +82,7 @@ export function MonthTracker({ entries, profile, month }: { entries: DailyEntry[
   return (
     <div>
       <div className="grid grid-cols-7 gap-1 mb-1">
-        {WEEKDAYS_SHORT.map((w) => <div key={w} className="text-center text-[10px] uppercase text-fg-subtle">{w}</div>)}
+        {WEEKDAYS_SHORT.map((w) => <div key={w} className="text-center text-[10px] text-fg-subtle">{w}</div>)}
       </div>
       <div className="space-y-1">
         {rows.map((r, ri) => (
@@ -99,11 +99,11 @@ export function MonthTracker({ entries, profile, month }: { entries: DailyEntry[
                     "rounded-lg border p-1.5 min-h-[52px] flex flex-col justify-between",
                     !inMonth && "opacity-30",
                     future || !c.max ? "border-border bg-bg-subtle/30" : ratio === 1 ? "border-accent-green/40 bg-accent-green/10" : ratio >= 0.6 ? "border-accent-yellow/30 bg-accent-yellow/5" : "border-accent-red/20 bg-accent-red/5",
-                    d === today && "ring-1 ring-accent-orange/60"
+                    d === today && "ring-1 ring-accent/60"
                   )}
                 >
                   <div className="flex items-center justify-between">
-                    <span className={cn("text-[11px] font-medium", d === today ? "text-accent-orange" : "text-fg-muted")}>{parseInt(d.slice(8), 10)}</span>
+                    <span className={cn("text-[11px] font-medium", d === today ? "text-accent" : "text-fg-muted")}>{parseInt(d.slice(8), 10)}</span>
                     {c.max > 0 && <span className={cn("text-[10px] font-semibold", ratio === 1 ? "text-accent-green" : "text-fg-muted")}>{c.score}/{c.max}</span>}
                   </div>
                   <div className="flex gap-1 justify-center">

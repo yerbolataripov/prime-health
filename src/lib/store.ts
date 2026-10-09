@@ -181,9 +181,10 @@ export const useApp = create<AppState>()(
     }),
     {
       name: STORAGE_KEY,
-      version: 2,
+      version: 3,
       migrate: (persisted: any, version) => {
         const st = persisted ?? {};
+        if (version < 3 && st.ui) st.ui = { ...st.ui, theme: "light" };
         if (version < 2) {
           // v2.0 → v2.1: trained/trainingKind → trainings[]
           st.dailyEntries = (st.dailyEntries ?? []).map((d: any) => {

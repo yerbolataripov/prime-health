@@ -8,7 +8,7 @@ type Tone = "default" | "green" | "orange" | "red" | "blue" | "yellow" | "purple
 const tones: Record<Tone, string> = {
   default: "bg-bg-subtle text-fg-muted border-border",
   green: "bg-accent-green/10 text-accent-green border-accent-green/30",
-  orange: "bg-accent-orange/10 text-accent-orange border-accent-orange/30",
+  orange: "bg-accent/10 text-accent border-accent/30",
   red: "bg-accent-red/10 text-accent-red border-accent-red/30",
   blue: "bg-accent-blue/10 text-accent-blue border-accent-blue/30",
   yellow: "bg-accent-yellow/10 text-accent-yellow border-accent-yellow/30",

@@ -110,10 +110,10 @@ export default function TrainingPage() {
                     className={cn(
                       "rounded-xl border py-2 flex flex-col items-center gap-1 transition min-h-[74px]",
                       done ? "border-accent-green bg-accent-green/10" : planned ? "border-accent-blue/50 bg-accent-blue/5" : "border-border bg-bg-subtle/40",
-                      d === today && "ring-1 ring-accent-orange/60"
+                      d === today && "ring-1 ring-accent/60"
                     )}
                   >
-                    <span className="text-[10px] uppercase tracking-wide text-fg-muted">{WEEKDAYS_SHORT[i]}</span>
+                    <span className="text-[10px] text-fg-muted">{WEEKDAYS_SHORT[i]}</span>
                     <span className="text-base leading-none">{done ? ss.map((s) => TRAINING_KINDS[s.kind].emoji).join("") : planned ? "•" : " "}</span>
                     <span className="text-[10px] text-fg-subtle text-center leading-tight px-0.5">
                       {done ? ss.map((s) => TRAINING_KINDS[s.kind].label).join(" + ") : planned ? "план" : ""}
@@ -172,14 +172,14 @@ export default function TrainingPage() {
             const tpl = WORKOUT_PROGRAMS[p as Exclude<Program, "other">];
             const next = p === todayProgram;
             return (
-              <Card key={p} className={next ? "border-accent-orange/50" : ""}>
+              <Card key={p} className={next ? "border-accent/50" : ""}>
                 <CardBody>
                   <div className="flex items-center justify-between">
                     <div>
                       <div className="text-sm font-semibold">{tpl.title}</div>
                       <div className="text-xs text-fg-muted">{tpl.focus}</div>
                     </div>
-                    {next && <span className="text-[10px] uppercase tracking-wider text-accent-orange">следующая</span>}
+                    {next && <span className="text-[10px]r text-accent">следующая</span>}
                   </div>
                   <ul className="mt-3 space-y-1 text-sm">
                     {tpl.exercises.map((e) => (
@@ -252,7 +252,7 @@ export default function TrainingPage() {
                 <CardBody>
                   <div className="flex items-center justify-between">
                     <div>
-                      <div className="text-xs text-fg-subtle uppercase tracking-wider">{fmtDate(w.date)}</div>
+                      <div className="text-xs text-fg-subtler">{fmtDate(w.date)}</div>
                       <div className="font-semibold mt-0.5">{PROGRAM_LABEL[w.program]}</div>
                     </div>
                     <Button variant="ghost" size="icon" onClick={() => deleteWorkout(w.id)}><Trash2 className="h-4 w-4 text-fg-muted" /></Button>
@@ -276,7 +276,7 @@ export default function TrainingPage() {
 function Stat({ label, value, hint }: { label: string; value: string; hint: string }) {
   return (
     <div className="rounded-2xl border border-border bg-bg-card p-3.5">
-      <div className="text-[11px] uppercase tracking-wide text-fg-muted">{label}</div>
+      <div className="text-[12px] text-fg-muted">{label}</div>
       <div className="text-xl font-semibold tracking-tight mt-1">{value}</div>
       <div className="text-[11px] text-fg-subtle mt-0.5">{hint}</div>
     </div>

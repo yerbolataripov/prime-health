@@ -194,7 +194,7 @@ export default function MealPrepPage() {
           {plans.length > 1 && (
             <div className="flex gap-2 flex-wrap">
               {plans.map((p) => (
-                <button key={p.id} onClick={() => setActiveId(p.id)} className={cn("px-3 py-1.5 rounded-lg border text-xs", active?.id === p.id ? "border-accent-orange bg-accent-orange/10 text-accent-orange" : "border-border text-fg-muted hover:text-fg")}>
+                <button key={p.id} onClick={() => setActiveId(p.id)} className={cn("px-3 py-1.5 rounded-lg border text-xs", active?.id === p.id ? "border-accent bg-accent/10 text-accent" : "border-border text-fg-muted hover:text-fg")}>
                   {fmtDate(p.startDate)} — {fmtDate(p.endDate)}
                 </button>
               ))}
@@ -210,7 +210,7 @@ export default function MealPrepPage() {
           {active && (
             <>
               <div className="flex items-center justify-between gap-2 flex-wrap">
-                <h2 className="text-sm font-semibold uppercase tracking-wider text-fg-muted">
+                <h2 className="text-[15px] font-semibold text-fg">
                   Меню {fmtDate(active.startDate)} — {fmtDate(active.endDate)}
                 </h2>
                 <div className="flex gap-2">
@@ -225,11 +225,11 @@ export default function MealPrepPage() {
                   const ok = dayInRange(totals, active.caloriesTarget, active.proteinTarget);
                   const isToday = d.date === todayISO();
                   return (
-                    <Card key={d.date} className={cn(!ok && "border-accent-yellow/40", isToday && "ring-1 ring-accent-orange/50")}>
+                    <Card key={d.date} className={cn(!ok && "border-accent-yellow/40", isToday && "ring-1 ring-accent/50")}>
                       <CardBody className="space-y-2">
                         <div className="flex items-center justify-between">
                           <div>
-                            <div className="text-[10px] uppercase tracking-wider text-fg-muted">{WEEKDAYS_SHORT[weekdayIdx(d.date)]}{isToday && " · сегодня"}</div>
+                            <div className="text-[11px] text-fg-muted">{WEEKDAYS_SHORT[weekdayIdx(d.date)]}{isToday && " · сегодня"}</div>
                             <div className="text-sm font-semibold">{fmtDate(d.date)}</div>
                           </div>
                           <div className="flex items-center gap-1">
@@ -246,13 +246,13 @@ export default function MealPrepPage() {
                                 key={mealIdx}
                                 type="button"
                                 onClick={() => setRecipe({ tpl: t, dayIdx, mealIdx })}
-                                className={cn("w-full text-left rounded-lg border p-2 transition hover:border-accent-orange/40", m.pinned ? "border-accent-orange/50 bg-accent-orange/5" : "border-border")}
+                                className={cn("w-full text-left rounded-lg border p-2 transition hover:border-accent/40", m.pinned ? "border-accent/50 bg-accent/5" : "border-border")}
                               >
                                 <div className="flex items-center justify-between gap-2">
-                                  <span className="text-[10px] uppercase tracking-wider text-fg-subtle">{CATEGORY_LABEL[m.category]}</span>
+                                  <span className="text-[11px] text-fg-subtle">{CATEGORY_LABEL[m.category]}</span>
                                   <span className="flex items-center gap-1 text-[10px] text-fg-subtle">
                                     {favorites.includes(t.id) && <Star className="h-3 w-3 text-accent-yellow" fill="currentColor" />}
-                                    {m.pinned && <Pin className="h-3 w-3 text-accent-orange" />}
+                                    {m.pinned && <Pin className="h-3 w-3 text-accent" />}
                                     <Clock className="h-2.5 w-2.5" />{t.prepTimeMin}
                                   </span>
                                 </div>
@@ -266,7 +266,7 @@ export default function MealPrepPage() {
                           <span className="text-fg-muted">
                             <span className={cn("font-medium", ok ? "text-fg" : "text-accent-yellow")}>{totals.cal} ккал</span> · <span className="text-accent-green">Б {totals.p}</span> · Ж {totals.f} · У {totals.c}
                           </span>
-                          <button onClick={() => sendDayToConstructor(dayIdx)} className="text-accent-orange hover:underline">в конструктор</button>
+                          <button onClick={() => sendDayToConstructor(dayIdx)} className="text-accent hover:underline">в конструктор</button>
                         </div>
                       </CardBody>
                     </Card>
@@ -278,7 +278,7 @@ export default function MealPrepPage() {
                 <CardBody>
                   <div className="flex items-center justify-between gap-2 mb-3">
                     <div className="flex items-center gap-2">
-                      <ShoppingCart className="h-4 w-4 text-accent-orange" />
+                      <ShoppingCart className="h-4 w-4 text-accent" />
                       <div>
                         <div className="text-sm font-semibold">Список покупок</div>
                         <div className="text-[11px] text-fg-muted">{active.groceryList.length} позиций · отмечай купленное</div>
@@ -289,14 +289,14 @@ export default function MealPrepPage() {
                   <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-4">
                     {Array.from(new Set(active.groceryList.map((g) => g.group))).map((group) => (
                       <div key={group}>
-                        <div className="text-[11px] uppercase tracking-wider text-accent-orange mb-1.5">{GROUP_LABEL[group as GroceryGroup]}</div>
+                        <div className="text-[11px]r text-accent mb-1.5">{GROUP_LABEL[group as GroceryGroup]}</div>
                         <ul className="space-y-0.5 text-sm">
                           {active.groceryList.filter((g) => g.group === group).map((g) => {
                             const done = bought.has(g.item);
                             return (
                               <li key={g.item}>
                                 <label className={cn("flex items-center gap-2 py-1 cursor-pointer", done && "text-fg-subtle line-through")}>
-                                  <input type="checkbox" checked={done} onChange={() => setBought((s) => { const n = new Set(s); done ? n.delete(g.item) : n.add(g.item); return n; })} className="accent-[rgb(var(--accent-orange))]" />
+                                  <input type="checkbox" checked={done} onChange={() => setBought((s) => { const n = new Set(s); done ? n.delete(g.item) : n.add(g.item); return n; })} className="accent-[rgb(var(--accent))]" />
                                   <span className="flex-1">{g.item}</span>
                                   <span className="text-xs text-fg-muted">{g.qty}</span>
                                 </label>
@@ -345,7 +345,7 @@ export default function MealPrepPage() {
             {library.map((t) => {
               const fav = favorites.includes(t.id);
               return (
-                <Card key={t.id} className="hover:border-accent-orange/40 transition-colors">
+                <Card key={t.id} className="hover:border-accent/40 transition-colors">
                   <CardBody className="flex flex-col h-full">
                     <div className="flex items-start justify-between gap-2">
                       <button className="text-left text-sm font-semibold leading-tight flex-1" onClick={() => setRecipe({ tpl: t })}>{t.name}</button>
@@ -407,12 +407,12 @@ export default function MealPrepPage() {
 
 function TabBtn({ active, onClick, icon, children }: { active: boolean; onClick: () => void; icon: React.ReactNode; children: React.ReactNode }) {
   return (
-    <button onClick={onClick} className={cn("flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition", active ? "bg-accent-orange/15 text-accent-orange" : "text-fg-muted hover:text-fg")}>
+    <button onClick={onClick} className={cn("flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition", active ? "bg-accent/15 text-accent" : "text-fg-muted hover:text-fg")}>
       {icon}{children}
     </button>
   );
 }
 
 function chip(active: boolean) {
-  return cn("px-2.5 py-1.5 rounded-lg border text-xs transition", active ? "bg-accent-orange/15 border-accent-orange text-accent-orange" : "bg-bg-subtle border-border text-fg-muted hover:text-fg");
+  return cn("px-2.5 py-1.5 rounded-lg border text-xs transition", active ? "bg-accent/15 border-accent text-accent" : "bg-bg-subtle border-border text-fg-muted hover:text-fg");
 }
